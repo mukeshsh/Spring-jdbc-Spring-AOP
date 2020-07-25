@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+    <!-- configure target class -->
+    <bean id="mukesh" class="com.nt.service.ECommerceStore"/>
+    <!-- Configure advice classes -->
+     <bean id="pmAspect" class="com.nt.aspect.PerformanceMonitoringAspect"/>
+     <bean id="cacheAspect" class="com.nt.aspect.CachingAspect"/>
+     <bean id="loggingAspect" class="com.nt.aspect.AroundLoggingAspect"/>
+     <!-- enable aspectjAop -->
+     <aop:config>
+         <!-- pointcut expression -->
+         <aop:pointcut expression="execution(float com.nt.service.ECommerceStore.calc*(..))" id="ptc"/>
+         <!-- making spring bean as aspectjAop -->
+          <aop:aspect order="-1" ref="pmAspect">
+            <aop:around method="monitor" pointcut-ref="ptc"/>
+          </aop:aspect>
+          <aop:aspect order="-3" ref="loggingAspect">
+           <aop:around method="logging" pointcut-ref="ptc"/>
+          </aop:aspect>
+          <aop:aspect order="-5" ref="cacheAspect">
+             <aop:around method="caching" pointcut="execution(float com.nt.service.ECommerceStore.calc*(..))"/>
+          </aop:aspect>
+     </aop:config>
+</beans>
