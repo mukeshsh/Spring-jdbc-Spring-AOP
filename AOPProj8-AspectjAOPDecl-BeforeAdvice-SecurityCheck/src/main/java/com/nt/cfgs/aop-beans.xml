@@ -9,7 +9,7 @@
        <constructor-arg ref="authManager"/>
     </bean>
     <aop:config>
-       <aop:pointcut id="ptc" expression="execution(String com.nt.service.BankService.*(..)) and args(acid,amount)"/>
+       <aop:pointcut id="ptc" expression="execution(java.lang.String com.nt.service.BankService.*(..))"/>
         <aop:aspect ref="securityAdvice">
              <aop:before pointcut-ref="ptc" method="checkCredentials"/>
              </aop:aspect>

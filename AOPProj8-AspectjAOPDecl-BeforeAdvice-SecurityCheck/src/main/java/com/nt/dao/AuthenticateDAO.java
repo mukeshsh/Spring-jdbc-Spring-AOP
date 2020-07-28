@@ -1,7 +1,7 @@
 package com.nt.dao;
 
-import com.nt.model.UserDetails;
+import com.nt.bo.UserDetailsBO;
 
 public interface AuthenticateDAO {
-     public int authenticate(UserDetails details);
+     public int validate(UserDetailsBO bo);
 }

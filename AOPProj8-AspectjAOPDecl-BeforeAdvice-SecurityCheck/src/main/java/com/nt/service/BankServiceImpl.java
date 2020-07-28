@@ -17,7 +17,7 @@ public class BankServiceImpl implements BankService {
    if(count==0)
 	   return "Money Not Withdraw(Account no Invalid)";
    else
-		return "Money withdraw from account"+acno;
+		return amt+"  Money withdraw from account  "+acno+" account";
 	}
 
 	@Override
@@ -25,9 +25,6 @@ public class BankServiceImpl implements BankService {
 		  int count=0;
 		   //use dao
 		   count=dao.deposite(acno, amt);
-		   if(count==0)
-			   return "Money Not Deposite(Account no Invalid)";
-		   else
-				return "Money deposited into account"+acno;
+			    return (count==0)?"Money not Deposited":"Money is  deposited from "+acno+"  account";
 			}
 	}

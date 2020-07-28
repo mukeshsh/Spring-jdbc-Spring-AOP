@@ -1,10 +1,13 @@
 package com.nt.manager;
 
+import org.springframework.beans.BeanUtils;
+
+import com.nt.bo.UserDetailsBO;
 import com.nt.dao.AuthenticateDAO;
-import com.nt.model.UserDetails;
+import com.nt.dto.UserDetailsDTO;
 
 public class AuthenticationManager {
-	private ThreadLocal<UserDetails>  threadLocal=new ThreadLocal();
+	private ThreadLocal<UserDetailsDTO>  threadLocal=new ThreadLocal();
 	private  AuthenticateDAO  dao;
 	
 	public AuthenticationManager(AuthenticateDAO dao) {
@@ -14,10 +17,10 @@ public class AuthenticationManager {
 
 	//keeps given username and passwords in ThreadLocal as UserDetails obj
 	public  void signIn(String username,String password) {
-		UserDetails details=null;
-		details=new UserDetails();
+		UserDetailsDTO details=null;
+		details=new UserDetailsDTO();
 		details.setUsername(username);
-		details.setPassword(password);
+		details.setPwd(password);
 		threadLocal.set(details);
 	}
 	
@@ -27,16 +30,18 @@ public class AuthenticationManager {
 		threadLocal.remove();
 	}
 	
-	public   boolean  validate() {
-		UserDetails details=null;
+	public  boolean isAuthenticated() {
+		UserDetailsDTO dto=null;
+		UserDetailsBO bo=null;
 		int count=0;
-		//get current client /thread related details from ThreadLocal
-		details=threadLocal.get();
+		//get Current client's/thread's UserDetailsDTO class object
+		dto=threadLocal.get();
+		//convert dto to bo
+		bo=new UserDetailsBO();
+		BeanUtils.copyProperties(dto,bo);
 		//use DAO
-		count=dao.authenticate(details);
-		if(count==0)
-			return false;
-		else
-			return true;
+		count=dao.validate(bo);
+		return count==0?false:true;
+		
 	}
 }

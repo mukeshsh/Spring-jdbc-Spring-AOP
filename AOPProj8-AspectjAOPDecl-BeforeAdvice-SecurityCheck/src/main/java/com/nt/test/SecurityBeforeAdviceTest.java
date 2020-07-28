@@ -1,5 +1,7 @@
 package com.nt.test;
 
+import java.sql.SQLException;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -20,11 +22,21 @@ public class SecurityBeforeAdviceTest {
 		//get AuthenticationManager obj
 		manager=ctx.getBean("authManager",AuthenticationManager.class);
 		//singnIn
-		manager.signIn("raja","rani");
+		manager.signIn("karishma","anil");
 		//invoke b.methods
-		System.out.println(proxy.withdraw(1001,2000));
-		System.out.println(proxy.deposite(1002,1000));
-		
+		try {
+		System.out.println(proxy.withdraw(1002,2000));
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println("-----------------------------------------");
+		try {
+			System.out.println(proxy.deposite(1003,2000));
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		//signOut
 		manager.signOut();
 		//close container 
