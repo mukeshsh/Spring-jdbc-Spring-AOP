@@ -31,5 +31,9 @@ public class ProductDTO implements Serializable {
 	public void setQty(Float qty) {
 		this.qty = qty;
 	}
+	@Override
+	public String toString() {
+		return "ProductDTO [pid=" + pid + ", pname=" + pname + ", price=" + price + ", qty=" + qty + "]";
+	}
 	 
 }
