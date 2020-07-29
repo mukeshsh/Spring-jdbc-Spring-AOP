@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+        <!-- configure target class -->
+        <bean id="shopping" class="com.nt.service.ShoppingStore"/>
+        <!-- cfgs aspect class -->
+        <bean id="expLoggerAspect" class="com.nt.aspect.CommonExceptionLoggerAspect"/>
+        <bean id="grploggerAspect" class="com.nt.aspect.CommonExceptionGrapherAspect"/>
+        <aop:config>
+           <aop:pointcut expression="execution(float com.nt.service.ShoppingStore.calculateSingleProdBillAmt(..))" id="ptc"/>
+           <aop:aspect order="1" ref="expLoggerAspect">
+           <aop:after-throwing throwing="ex" pointcut-ref="ptc" method="exceptionLogger"/>
+           </aop:aspect>
+           <aop:aspect order="2" ref="grploggerAspect">
+              <aop:after-throwing throwing="iae" pointcut-ref="ptc" method="exceptionGraphing"/>
+           </aop:aspect>
+        </aop:config>
+
+</beans>
