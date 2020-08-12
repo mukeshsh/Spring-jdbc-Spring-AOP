@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "dtx.orads.xaDataSourceClassName",
+    "type": "java.lang.String",
+    "description": "A description for 'dtx.orads.xaDataSourceClassName'"
+  },
+  {
+    "name": "dtx.orads.uniqueResourceName",
+    "type": "java.lang.String",
+    "description": "A description for 'dtx.orads.uniqueResourceName'"
+  },
+  {
+    "name": "dtx.orads.xaProperties.databaseName",
+    "type": "java.lang.String",
+    "description": "A description for 'dtx.orads.xaProperties.databaseName'"
+  },
+  {
+    "name": "dtx.orads.xaProperties.URL",
+    "type": "java.lang.String",
+    "description": "A description for 'dtx.orads.xaProperties.URL'"
+  },
+  {
+    "name": "dtx.orads.xaProperties.password",
+    "type": "java.lang.String",
+    "description": "A description for 'dtx.orads.xaProperties.password'"
+  },
+  {
+    "name": "dtx.orads.xaProperties.user",
+    "type": "java.lang.String",
+    "description": "A description for 'dtx.orads.xaProperties.user'"
+  }
+]}
