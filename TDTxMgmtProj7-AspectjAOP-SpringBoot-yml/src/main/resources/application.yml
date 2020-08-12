@@ -1,0 +1,20 @@
+dtx:
+  mysqlds:
+    uniqueResourceName: mysqlXA
+    xaDataSourceClassName: com.mysql.cj.jdbc.MysqlXADataSource
+    xaProperties:
+      URL: jdbc:mysql:///nareshit
+      databaseName: nareshit
+      password: football
+      user: root
+  orads:
+    uniqueResourceName: oraXA
+    xaDataSourceClassName: oracle.jdbc.xa.client.OracleXADataSource
+    xaProperties:
+      URL: jdbc:oracle:thin:@localhost:1521:xe
+      databaseName: xe
+      password: class
+      user: jdbc
+spring:
+  aop:
+    proxy-target-class: false
