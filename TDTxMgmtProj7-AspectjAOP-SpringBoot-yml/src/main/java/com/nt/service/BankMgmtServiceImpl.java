@@ -9,7 +9,7 @@ import com.nt.dao.DepositeDAO;
 import com.nt.dao.WithdrawDAO;
 
 @Service("bankService")
-public class BankMgmtServiceImpl implements BankMgmtService {
+public final class BankMgmtServiceImpl implements BankMgmtService {
 
 	@Autowired
 	private WithdrawDAO wDAO;
