@@ -13,8 +13,8 @@
 	</bean>
 
 	<!-- servver managed DS for postgresql -->
-	<bean id="psXADs" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value="psXADsJndi"/>
+	<bean id="pgDs" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="pgDsJndi"/>
 	</bean>
 
 	<!-- JdbcTemplate for oracle -->
@@ -24,6 +24,6 @@
 
 	<!-- JdbcTemplate for postgreSql -->
 	<bean id="pgJt" class="org.springframework.jdbc.core.JdbcTemplate">
-		<constructor-arg ref="psXADs"/>
+		<constructor-arg ref="pgDs"/>
 	</bean>
 </beans>
